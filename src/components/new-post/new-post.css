@@ -1,0 +1,91 @@
+.new-post{
+  border-radius: 1.8rem;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  padding: 3rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.new-post>img{
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.new-post>img:hover{
+  cursor: pointer;
+}
+.new-share{
+  width:calc(100% - 10rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: height 2s ease;
+}
+.new-share>input{
+  background-color: rgb(221, 219, 219);
+  width: 100%;
+  height: 4rem;
+  border-radius: 0.8rem;
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+.share-options{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 2.3rem;
+}
+.share-options>.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  font-size: 1.5rem;
+}
+.photo-btn{
+  color: #8035f9;
+  background-color: transparent;
+}
+.video-btn{
+  color: #f5981f;
+  background-color: transparent;
+}
+.location-btn{
+  color: #35f9a7;
+  background-color: transparent;
+}
+.schedule-btn{
+  color: #cb35f9;
+  background-color: transparent;
+}
+.post-btn{
+  width: 10rem;
+  height: 3rem;
+  background-color: orange;
+  font-size: 2.8rem;
+  border-radius: 1rem;
+}
+.image-preview{
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.image-preview>svg{
+  font-size: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: orange;
+  font-weight: bold;
+}
+.image-preview>img:last-child{
+  width: 100%;
+  max-height: 60rem;
+  border-radius: 1.8rem;
+  border-bottom-right-radius: 1.8rem;
+  border-bottom-left-radius: 1.8rem;
+}

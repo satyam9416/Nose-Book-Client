@@ -1,0 +1,47 @@
+.follower-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.3rem 0;
+  padding: 2rem 2rem;
+  background: white;
+  border-radius: 2rem;
+}
+.follower-profile {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  gap: 0.5rem;
+}
+.follower-profile > img {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+}
+.follower-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 2rem;
+  padding-left: 1rem;
+}
+.follower-name:hover{
+  cursor: pointer;
+}
+.follower-name > span:first-child {
+  /* font-size: 3rem; */
+  font-weight: 600;
+}
+.follower-name > span:last-child {
+  font-size: 1.6rem;
+}
+.follow-btn {
+  font-size: 1.6rem;
+  background-color: orange;
+  letter-spacing: 0.2rem;
+  padding: 0 0.5rem;
+  /* width: 7rem; */
+  height: 3rem;
+  border-radius: 0.6rem;
+}

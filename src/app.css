@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;800&family=Merriweather:ital,wght@1,900&display=swap");
+
+:root {
+  --yellow: #f5c32c;
+  --orange: #fca61f;
+  --black: #242d49;
+  --gray: rgba(36, 45, 73, 0.65);
+  --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
+  --hrColor: #cfcdcd;
+  --cardColor: rgba(255, 255, 255, 0.64);
+  --buttonBg: linear-gradient(98.63deg, #f9a225 0%, #f95f35 100%);
+  --inputColor: rgba(40, 52, 62, 0.07);
+  --photo: #4cb256;
+  --video: #4a4eb7;
+  --location: #ef5757;
+  --shedule: #e1ae4a;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+*,
+*:hover {
+  border: none;
+  outline: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+html {
+  font-size: 10px;
+  font-family: "Baloo Bhai 2", cursive;
+}
+img {
+  object-fit: cover;
+}
+.btn {
+  cursor: pointer;
+  user-select: none;
+}
+a:focus {
+  color: none;
+}
+
+.app {
+  display: grid;
+  padding: 10px;
+  background-color: rgb(228, 247, 239);
+  width: 100vw;
+  grid-template-columns: 26% auto 26%;
+  gap: 1rem;
+  overflow: hidden;
+  height: 100vh;
+}
+.left-side,
+.postside,
+.right-side {
+  width: 100%;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1.5rem;
+  gap: 1.2rem;
+  height: 98vh;
+  overflow: scroll;
+}
+input:-internal-autofill-previewed {
+  font-size: 2rem !important;
+}
+
+/* M E D I A  Q U E R Y */
+@media (max-width: 700px) {
+  html {
+    font-size: 45%;
+  }
+}

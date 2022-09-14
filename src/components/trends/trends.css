@@ -1,0 +1,21 @@
+.trends-box{
+  background-color: white;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  width: 100%;
+  border-radius: 1.8rem;
+  display: flex;
+  flex-direction: column;
+}
+.trend{
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+.big-share-btn{
+  font-size: 3rem;
+  width: 70%;
+  height: 4rem;
+  background-color: orange;
+  border-radius: 1rem;
+  color: white;
+}

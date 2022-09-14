@@ -1,0 +1,44 @@
+.edit-info{
+    margin: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.7rem;
+    width: 100%;
+}
+.edit-info h1{
+    font-size: 4rem;
+}
+.edit-info > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+.edit-info input{
+    height: 5rem;
+    width: 100%;
+    background-color: rgb(212, 212, 212);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 2rem;  
+}
+.edit-info input:-webkit-autofill::first-line {
+    height: 5rem;
+    width: 100%;
+    background-color: rgb(212, 212, 212);
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 2rem;   
+}
+.save-info-btn{
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: orange;
+    font-size: 2rem;
+    text-decoration: none;
+    width: 20rem;
+}

@@ -1,0 +1,29 @@
+.message-container {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  max-height: 68vh;
+}
+.msg-box {
+  min-width: 20%;
+  max-width: 50%;
+  min-height: 5rem;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.8rem;
+}
+.msg-box .msg-text {
+  font-size: 1.5rem;
+  word-wrap: break-word;
+  font-weight: 200;
+}
+.left {
+  background-color: #fff;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+.right {
+  background-color: orange;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}

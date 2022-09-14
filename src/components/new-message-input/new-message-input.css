@@ -1,0 +1,25 @@
+.new-message-box {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  background-color: rgb(185, 185, 185);
+  grid-template-columns: 4rem auto 6rem;
+}
+.send-new-msg-icon,
+.send-emoji-msg-icon {
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  color: orange;
+}
+
+.send-new-msg-icon,
+.send-emoji-msg-icon > svg:hover {
+  cursor: pointer;
+}
+.new-message-input {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  font-size: 2rem;
+}

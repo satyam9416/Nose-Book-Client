@@ -1,0 +1,33 @@
+
+.search-bar {
+  height: 4.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgb(221, 219, 219);
+  border-radius: 1rem;
+}
+.search-input {
+  height: 3.7rem;
+  width: 80%;
+  font-size: 2rem;
+  border: none;
+  background-color: transparent;
+}
+.search-input::placeholder{
+  color: rgba(255, 168, 6, 0.822);
+}
+.search-btn{
+  font-size: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: orange;
+  background-color: transparent;
+}
+.search-btn:hover {
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+}

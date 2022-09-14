@@ -1,0 +1,14 @@
+.navbar{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.nav-btn{
+  font-size: 3rem;
+}
+.navbtn:hover{
+  color: #ffa600;
+}
+.navbar .active{
+  color: orange;
+}

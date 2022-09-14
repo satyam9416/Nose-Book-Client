@@ -1,0 +1,9 @@
+.no-chat-container {
+  display: grid;
+  color: gray;
+  place-items: center;
+  font-size: 6rem;
+}
+.no-chat-text {
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+.chat-header{
+    background-color: blueviolet;
+    height: 9rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 2rem;
+}
+.chat-header:hover{
+    cursor: pointer;
+}
+.chat-header-img{
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.chat-header-profile-name{
+    color: white;
+    font-size: 3.5rem;
+}
