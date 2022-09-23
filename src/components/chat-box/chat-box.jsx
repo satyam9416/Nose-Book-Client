@@ -22,7 +22,6 @@ const ChatBox = ({ activeChat }) => {
 
   useEffect(() => {
     socket.current.on('recieveMsg', newMsg => {
-      console.log(newMsg)
       setMessages(prev => [...prev, newMsg])
     })
   }, [])

@@ -6,7 +6,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getDownloadURL, ref } from 'firebase/storage'
 import { storage } from '../../firebase-config'
-const images = process.env.REACT_APP_SERVER_IMAGES
 
 const ChatHeader = ({ userId }) => {
   const navigate = useNavigate()

@@ -1,0 +1,30 @@
+.lazy-image-parent {
+  position: relative;
+  overflow: hidden;
+  overflow: hidden;
+  background-color: #313131;
+  height: fit-content;
+}
+.lazy-image-wrapper {
+    width: 100%;
+    height: 0;
+}
+
+.animating {
+  animation: skeleton 0.8s ease alternate infinite;
+}
+
+@keyframes skeleton {
+  50% {
+    opacity: 50%;
+  }
+}
+
+.lazy-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}

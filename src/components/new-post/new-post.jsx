@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { BsFillCameraVideoFill } from 'react-icons/bs'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import { MdAddLocationAlt } from 'react-icons/md'
@@ -8,9 +8,8 @@ import { AiOutlineClose } from 'react-icons/ai'
 import './new-post.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { shareAction, uploadImageAction } from '../../actions/shareAction'
-import { getDownloadURL, ref } from 'firebase/storage'
-import { storage } from '../../firebase-config'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import LazyImage from '../lazy-image/lazy-image'
 
 const NewPost = () => {
     const authData = useSelector((state) => state.authReducer.authData)
@@ -18,17 +17,8 @@ const NewPost = () => {
     const imgrefs = useRef()
     const dispatch = useDispatch()
     const [image, setImage] = useState(false)
-    const [imgloaded, setImgloaded] = useState(false)
     const content = useRef()
-    const profileImgRef = useRef()
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const getImageUrl = async () => {
-            profileImgRef.current.src = await getDownloadURL(ref(storage, 'images/' + authData.profileImg))
-        }
-        authData?.profileImg && getImageUrl()
-    }, [authData?.profileImg])
 
     const changeImageHandler = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -58,7 +48,7 @@ const NewPost = () => {
 
     return (
         <div className='new-post'>
-            <img src='/images/defaultProfile.jpg' alt="" ref={profileImgRef} onLoad={() => { setImgloaded(true) }} onClick={() => {navigate('/profile/' + authData._id)}}/>
+            <LazyImage image={authData.profileImg} className='new-post-profile-img' altSrc='/images/defaultProfile.jpg' onClick={() => { navigate('/profile/' + authData._id) }} aspectRatio={[1,1]}/>
             <div className='new-share'>
                 <input type="text" name="new-post" placeholder="What's happening ?" ref={content} />
                 <div className='share-options'>

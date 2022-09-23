@@ -1,6 +1,5 @@
 import React from 'react'
 import { AiFillHome } from 'react-icons/ai'
-import { IoMdSettings } from 'react-icons/io'
 import { FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { RiMessage3Fill } from 'react-icons/ri'
 import {NavLink, useNavigate} from 'react-router-dom'

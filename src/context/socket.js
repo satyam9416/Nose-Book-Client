@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { createContext } from 'react'
 import { useSelector } from 'react-redux'
 import io from 'socket.io-client'
@@ -10,10 +10,10 @@ export const SocketState = ({ children }) => {
   const socket = useRef()
 
   useEffect(() => {
-    // socket.current = io("http://localhost:5000/", { transports: ['websocket'] })
-    socket.current = io("https://nose-book-server.herokuapp.com/", { transports: ['websocket'] })
+    const url = process.env.REACT_APP_PRODUCTION ? process.env.REACT_APP_SERVER_URL : "http://localhost:5000/"
+    socket.current = io(url, { transports: ['websocket'] })
     socket.current.emit('addUser', _id)
-  }, [])
+  }, [_id])
 
   return (
     <socketContext.Provider value={{ socket }}>{children}</socketContext.Provider>

@@ -1,9 +1,7 @@
-import { async } from '@firebase/util';
 import { Modal, useMantineTheme } from '@mantine/core';
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { uploadImageAction } from '../../actions/shareAction';
 import { updateDataAction } from '../../actions/updateDataAction';
 import { storage } from '../../firebase-config';
 import './edit-details-modal.css'

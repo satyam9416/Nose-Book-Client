@@ -15,8 +15,7 @@
   align-items: center;
   gap: 0.5rem;
 }
-.follower-profile > img {
-  height: 5rem;
+.follower-card-profile-img {
   width: 5rem;
   border-radius: 50%;
 }

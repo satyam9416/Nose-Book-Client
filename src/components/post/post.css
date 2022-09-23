@@ -12,28 +12,22 @@
   width: 100%;
   padding-left: 1rem;
 }
-.post-img-container{
-  width: 100%;
-  padding-top: 133.3333333%;
-  position: relative;
-  margin-bottom: 1rem;
-}
 .post-img{
-  width: 100%;
-  height: 100%;
+  margin-bottom: 1rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
 }
 .rxn-btns{
   display: flex;
   gap: 1rem;
 }
-.rxn-btns>.btn{
-  font-size: 2.4rem;
+.rxn-btns > svg{
+  font-size: 3rem;
+  transition: all .3s;
+}
+.rxn-btns > svg:hover{
+  scale: 1.2;
 }
 .post-content{
   font-size: 2rem;

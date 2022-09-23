@@ -2,8 +2,7 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 const API = axios.create({
-    // baseURL: 'http://localhost:5000/'
-    baseURL: 'https://nose-book-server.herokuapp.com/'
+    baseURL: process.env.REACT_APP_PRODUCTION ? process.env.REACT_APP_SERVER_URL : 'http://localhost:5000/'
 })
 
 export default API;

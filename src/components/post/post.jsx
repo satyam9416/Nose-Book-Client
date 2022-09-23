@@ -1,27 +1,20 @@
 import React from 'react'
 import './post.css'
-import { FaDownload, FaHeart, FaRegComment } from 'react-icons/fa'
+import { FaHeart, FaRegComment } from 'react-icons/fa'
 import { RiSendPlaneLine } from 'react-icons/ri'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import API from '../../API/API'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getDownloadURL, ref } from 'firebase/storage'
-import { storage } from '../../firebase-config'
-import { useRef } from 'react'
-import { useEffect } from 'react'
+import LazyImage from '../lazy-image/lazy-image'
+import PostModal from '../post-modal/post-modal'
+import { Modal } from 'antd'
 
 const Post = ({ post }) => {
   const authData = useSelector((state) => state.authReducer.authData)
   const [liked, setLiked] = useState(post.likes.includes(authData._id))
   const [likes, setLikes] = useState(post.likes.length)
-  const postImgRef = useRef()
-  useEffect(() => {
-    const getImageUrl = async () => {
-      postImgRef.current.src = await getDownloadURL(ref(storage, 'images/' + post.image))
-    }
-    getImageUrl()
-  }, [post.image])
+  const [isOpenPostModal, setIsOpenPostModal] = useState(false)
 
   const likePost = async (id) => {
     setLiked((prev) => !prev)
@@ -31,26 +24,17 @@ const Post = ({ post }) => {
 
   return (
     <div className='post'>
-      <div className='post-img-container'>
-      <img src='' className='post-img' alt='' ref={postImgRef} />
-    </div>
+      <LazyImage image={post.image} className='post-img'/>
       <div className='post-content-box'>
         <span className='post-content'>{post.content}</span>
-        <div className='rxn-btns' onClick={() => likePost(post._id)}>
-          {liked ? <FaHeart className='btn' /> : <AiOutlineHeart className='btn' />}
-          <FaRegComment className='btn' />
+        <div className='rxn-btns' >
+          {liked ? <AiFillHeart className='btn' fill='red' onClick={() => likePost(post._id)} /> : <AiOutlineHeart className='btn' onClick={() => likePost(post._id)} />}
+          <FaRegComment className='btn' onClick={() => { setIsOpenPostModal(true) }}/>
           <RiSendPlaneLine className='btn' />
         </div>
         <h2 className='likes-counter'>{likes} Likes </h2>
-        {/* <div className='comment'>
-                <span style={{ display: 'inline-block' }}>
-                  {post.comments[0].userName} :
-                </span>
-                <span>
-                  {post.comments[0].comment}
-                </span>
-              </div>
-            <a href="!#" className='more-comments-btn'>{(post.comments.length) - 1} more comments</a> */}
+
+        <PostModal isOpenPostModal={isOpenPostModal} setIsOpenPostModal={setIsOpenPostModal} post={post} />
       </div>
     </div>
   )
