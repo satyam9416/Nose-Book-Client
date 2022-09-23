@@ -14,6 +14,7 @@ const Chat = () => {
 
     useEffect(() => {
         dispatch(fetchChats(_id))
+        // eslint-disable-next-line
     }, [_id])
 
     return (

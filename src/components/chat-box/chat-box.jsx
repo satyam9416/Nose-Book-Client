@@ -18,12 +18,14 @@ const ChatBox = ({ activeChat }) => {
       const chat = data.filter((c) => c._id === activeChat)
       return chat[0].messages
     })
+    // eslint-disable-next-line
   }, [activeChat])
 
   useEffect(() => {
     socket.current.on('recieveMsg', newMsg => {
       setMessages(prev => [...prev, newMsg])
     })
+    // eslint-disable-next-line
   }, [])
 
   return (
