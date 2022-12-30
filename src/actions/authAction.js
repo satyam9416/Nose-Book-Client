@@ -25,7 +25,9 @@ export const signUp = (formdata) => async(dispatch) => {
  
 export const logOut = () => async (dispatch) => {
     try {
-        await API.get('auth/logout')
+        await API.post('auth/logout', {}, {
+                withCredentials: true,
+            })
         dispatch ({ type: 'LOG_OUT' })
     } catch (error) {
         dispatch({ type: 'AUTH_FAIL', error: error })
