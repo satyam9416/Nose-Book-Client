@@ -14,9 +14,11 @@ const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
     const navigate = useNavigate()
     useEffect(() => {
         const getPostUrl = async () => {
-            const url = await getDownloadURL(ref(storage, '/images/' + post.image))
-            setSrc(url)
-            setLoading(false)
+            if(post.image !== undefined){
+                const url = await getDownloadURL(ref(storage, '/images/' + post.image))
+                setSrc(url)
+                setLoading(false)
+            }
         }
         const getUserData = async () => {
             const { data } = await API.get(`user/${post.userId}`)

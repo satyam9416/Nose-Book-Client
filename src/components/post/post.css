@@ -26,7 +26,7 @@
   font-size: 3rem;
   transition: all .3s;
 }
-.rxn-btns > svg:hover{
+.rxn-btns > svg:active{
   scale: 1.2;
 }
 .post-content{

@@ -23,7 +23,7 @@ const Post = ({ post }) => {
 
   return (
     <div className='post'>
-      <LazyImage image={post.image} className='post-img' />
+      <LazyImage image={post?.image} className='post-img' />
       <div className='post-content-box'>
         <span className='post-content'>{post.content}</span>
         <div className='rxn-btns' >

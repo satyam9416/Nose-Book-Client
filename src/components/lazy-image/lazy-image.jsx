@@ -13,7 +13,7 @@ const LazyImage = ({ image, id, className, onClick, altSrc, aspectRatio, loading
             const url = await getDownloadURL(ref(storage, 'images/' + image))
             setSrc(url)
         }
-        !loading && (image ? getSrc() : setSrc(altSrc))
+        !loading && (image !== undefined ? getSrc() : setSrc(altSrc))
     }, [image, altSrc, loading])
 
     const paddingTop = useMemo(() => {

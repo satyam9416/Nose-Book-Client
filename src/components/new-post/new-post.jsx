@@ -24,10 +24,13 @@ const NewPost = () => {
         if (event.target.files && event.target.files[0]) {
             const tempImage = event.target.files[0]
             setImage(tempImage)
+            console.log(tempImage)
         }
         imgrefs.current.value = ''
     }
-    const shareHandler = () => {
+    const shareHandler = async() => {
+
+        console.log('new-share !')
         const newpost = {
             userId: authData._id,
             content: content.current.value
@@ -40,9 +43,10 @@ const NewPost = () => {
             imageData.append('filename', fileName)
             imageData.append('file', image)
             newpost.image = fileName
-            dispatch(uploadImageAction(imageData))
+            dispatch(await uploadImageAction(imageData, image, fileName))
             setImage(null)
         }
+
         dispatch(shareAction(newpost))
     }
 
@@ -56,7 +60,7 @@ const NewPost = () => {
                     <button className='btn video-btn'><BsFillCameraVideoFill />Video</button>
                     <button className='btn location-btn'><MdAddLocationAlt /> Location</button>
                     <button className='btn schedule-btn'><AiFillSchedule /> Schedule</button>
-                    <button className='btn post-btn' onClick={shareHandler} ><IoIosSend />{sharing ? 'Sharing...' : 'Share'}</button>
+                    <button className='btn post-btn' onClick={shareHandler} disabled={!image}><IoIosSend />{sharing ? 'Sharing...' : 'Share'}</button>
                 </div>
                 <input style={{ display: 'none' }} onChange={changeImageHandler} type="file" name="myImage" ref={imgrefs} />
                 {image && (

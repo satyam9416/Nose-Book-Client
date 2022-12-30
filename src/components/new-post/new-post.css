@@ -67,6 +67,9 @@
   font-size: 2.8rem;
   border-radius: 1rem;
 }
+.post-btn:disabled{
+  filter: grayscale(1);
+}
 .image-preview{
   position: relative;
   width: 100%;
