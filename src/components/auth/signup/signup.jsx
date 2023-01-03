@@ -21,14 +21,14 @@ const SignUp = () => {
             setValidation("*Password doesn't match")
             return;
         }
-            dispatch(signUp(userData))
-            setValidation("")
-            setuserData({ fName: '', lName: '', userName: '', passwd: '', confirmpass: '' })
+        dispatch(signUp(userData))
+        setValidation("")
+        setuserData({ fName: '', lName: '', userName: '', passwd: '', confirmpass: '' })
             
     }
 
     const changeHandler = (e) => {
-        setuserData((prev) => ({ ...prev, [e.target.name]: [e.target.value] }))
+        setuserData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     return (
