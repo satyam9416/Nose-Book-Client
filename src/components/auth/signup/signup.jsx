@@ -17,7 +17,7 @@ const SignUp = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if(userData.passwd != userData.confirmpass){
+        if(userData.passwd !== userData.confirmpass){
             setValidation("*Password doesn't match")
             return;
         }
