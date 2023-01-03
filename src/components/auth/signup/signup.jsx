@@ -17,13 +17,14 @@ const SignUp = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if (userData.passwd === userData.confirmpass) {
+        if(userData.passwd != userData.confirmpass){
+            setValidation("*Password doesn't match")
+            return;
+        }
             dispatch(signUp(userData))
             setValidation("")
             setuserData({ fName: '', lName: '', userName: '', passwd: '', confirmpass: '' })
-        } else {
-            setValidation("*Password doesn't match")
-        }
+            
     }
 
     const changeHandler = (e) => {
