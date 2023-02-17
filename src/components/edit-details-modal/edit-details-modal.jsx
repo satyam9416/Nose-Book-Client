@@ -1,6 +1,6 @@
 import { Modal, useMantineTheme } from '@mantine/core';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDataAction } from '../../actions/updateDataAction';
 import { storage } from '../../firebase-config';

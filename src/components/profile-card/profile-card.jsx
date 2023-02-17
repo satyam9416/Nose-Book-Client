@@ -35,7 +35,7 @@ const ProfileCard = ({ location }) => {
             </div>
             <div className='profile-name' onClick={() => navigate('/profile/' + userData._id)}>
                 <span><h1>{userData?.fName}</h1></span>
-                <span>{userData?.status ? userData?.status : 'MERN Stack Developer'}</span>
+                <span>{userData?.status || ''}</span>
 
             </div>
             <div className='hr' style={{ width: "90%" }} />

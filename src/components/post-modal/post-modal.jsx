@@ -1,8 +1,6 @@
 import './post-modal.css'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { getDownloadURL, ref } from 'firebase/storage'
-import { storage } from '../../firebase-config'
 import API from '../../API/API'
 import LazyImage from '../lazy-image/lazy-image'
 import { useNavigate } from 'react-router-dom'
@@ -21,9 +19,9 @@ const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
     }, [post])
 
     const handleNewComment = e => {
-        e.preventDefault();
-        const text = document.getElementById('new-comment-input');
-        document.getElementById('new-comment-input').value = '';
+        // e.preventDefault();
+        // const text = document.getElementById('new-comment-input');
+        // document.getElementById('new-comment-input').value = '';
     }
 
     return (
@@ -44,7 +42,7 @@ const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
                     <div className='post-modal-comment-section'>
 
                     </div>
-                    <form role='form' className='comment-input-wrapper' onSubmit={handleNewComment}>
+                    <form className='comment-input-wrapper' onSubmit={handleNewComment}>
                         <input type="text" name="newCommentText" placeholder='Add a comment...' id='new-comment-input'/>
                         <button type='submit'>post</button>
                     </form>
