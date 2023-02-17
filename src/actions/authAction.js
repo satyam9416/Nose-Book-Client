@@ -4,6 +4,7 @@ export const logIn = (formdata) => async(dispatch) => {
     dispatch({type : 'AUTH_START'})
     try {
         const { data } = await API.post('auth/login', formdata )
+        
         dispatch({type : 'AUTH_SUCCESS', data: data})
     } catch (error) {
         // console.log(error)
@@ -15,7 +16,6 @@ export const signUp = (formdata) => async(dispatch) => {
     dispatch({type : 'AUTH_START'})
     try {
         const { data } = await API.post('auth/register', formdata)
-        console.log(data)
         dispatch({type : 'AUTH_SUCCESS', data: data})
     } catch (error) {
         // console.log(error)
@@ -25,7 +25,10 @@ export const signUp = (formdata) => async(dispatch) => {
  
 export const logOut = () => async (dispatch) => {
     try {
-        await API.get('auth/logout')
+        await API.post('auth/logout', {},
+            {
+                withCredentials: true,
+            })
         dispatch ({ type: 'LOG_OUT' })
     } catch (error) {
         dispatch({ type: 'AUTH_FAIL', error: error })

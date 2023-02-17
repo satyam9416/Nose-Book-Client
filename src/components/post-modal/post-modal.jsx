@@ -8,32 +8,30 @@ import LazyImage from '../lazy-image/lazy-image'
 import { useNavigate } from 'react-router-dom'
 
 const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
-    const [src, setSrc] = useState(null)
     const [loading, setLoading] = useState(true)
-    const [userData, setUserData] = useState(null)
-    const navigate = useNavigate()
+    const [userData, setUserData] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
-        const getPostUrl = async () => {
-            if(post.image !== undefined){
-                const url = await getDownloadURL(ref(storage, '/images/' + post.image))
-                setSrc(url)
-                setLoading(false)
-            }
-        }
         const getUserData = async () => {
             const { data } = await API.get(`user/${post.userId}`)
             setUserData(data)
+            setLoading(false)
         }
-        getPostUrl()
         getUserData()
     }, [post])
+
+    const handleNewComment = e => {
+        e.preventDefault();
+        const text = document.getElementById('new-comment-input');
+        document.getElementById('new-comment-input').value = '';
+    }
 
     return (
         isOpenPostModal && !loading && <div className='modal-overlay'>
             <AiOutlineClose className='post-modal-close-btn' onClick={() => setIsOpenPostModal(false)} />
             <div className='post-modal'>
                 <div className='post-modal-media-container' >
-                    {src && <img className='post-modal-media' src={src} alt="" />}
+                    {post.image && <img className='post-modal-media' src={post.image} alt="" />}
                 </div>
                 <div className='post-modal-comments-wrapper'>
                     <div className='post-user-info' onClick={() => navigate(`/profile/${userData?._id}`)}>
@@ -46,9 +44,10 @@ const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
                     <div className='post-modal-comment-section'>
 
                     </div>
-                    <div className='comment-input-wrapper'>
-
-                    </div>
+                    <form role='form' className='comment-input-wrapper' onSubmit={handleNewComment}>
+                        <input type="text" name="newCommentText" placeholder='Add a comment...' id='new-comment-input'/>
+                        <button type='submit'>post</button>
+                    </form>
                 </div>
             </div>
         </div>

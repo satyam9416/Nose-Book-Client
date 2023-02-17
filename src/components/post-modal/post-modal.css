@@ -65,7 +65,7 @@
 .post-modal-comments-wrapper {
   height: 100%;
   display: grid;
-  grid-template-rows: 10rem auto 6rem;
+  grid-template-rows: 10rem auto 4rem;
 }
 .post-user-info {
   padding: 1rem;
@@ -86,4 +86,20 @@
 }
 .post-modal-comment-section {
   border-bottom: 0.1rem solid gray;
+}
+.comment-input-wrapper{
+  display: flex;
+}
+.comment-input-wrapper > input{
+  padding-block: 1em;
+  padding-left: .5em;
+  flex-grow: 1;
+}
+.comment-input-wrapper > button{
+  font-size: 1.5rem;
+  text-align: center;
+  padding-inline: 1rem;
+  font-weight: 700;
+  color: blue;
+  cursor: pointer;
 }

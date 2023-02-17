@@ -11,7 +11,8 @@ const PostsBox = ({ location }) => {
   const [posts, setPosts] = useState({})
   const [loading, setLoading] = useState(true)
   const { _id } = useSelector((state) => state.authReducer.authData)
-  const newShare = useSelector((state) => state.shareReducer.data)
+  const newShare = useSelector((state) => state.shareReducer.data?._id)
+  const postDeleted = useSelector((state) => state.deletePostReducer.success)
 
   useEffect(() => {
     const fetchTimelinePosts = async () => {
@@ -28,7 +29,7 @@ const PostsBox = ({ location }) => {
 
     location === 'profile' ? fetchUserPosts() : fetchTimelinePosts()
 
-  }, [newShare, _id, id, location])
+  }, [newShare, _id, id, location, postDeleted])
 
   return (
     loading ? <h1>Loading...</h1> : !posts?.length ? <h1 color='black'>No posts</h1> :

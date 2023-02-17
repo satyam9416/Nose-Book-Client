@@ -1,38 +1,54 @@
 import { Modal, useMantineTheme } from '@mantine/core';
-import { ref, uploadBytesResumable } from 'firebase/storage';
-import { useState } from 'react';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateDataAction } from '../../actions/updateDataAction';
 import { storage } from '../../firebase-config';
 import './edit-details-modal.css'
+import moment from 'moment';
+moment().format();
 
 function EditModal(props) {
     const dispatch = useDispatch()
     const theme = useMantineTheme();
     const { _id } = useSelector((state) => state.authReducer.authData)
-    const saving = useSelector((state) => state.updateDataReducer.loading)
+    // const saving = useSelector((state) => state.updateDataReducer.loading)
+    const [saving, setSaving] = useState(false)
     const [data, setData] = useState({ currentUserId: _id })
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState({})
 
     const submitHandler = async (e) => {
-        e.preventDefault()
-        images.map(async (img) => {
-            const storageRef = ref(storage, 'images/' + img.name)
-            await uploadBytesResumable(storageRef, img)
-        })
-        dispatch(updateDataAction(_id, data))
-        window.location.reload()
+        e.preventDefault();
+        setSaving(true);
+        let userData = data;
+        if (images.profileImg) {
+            console.log('Updating profile image...')
+            const storageRef = ref(storage, 'images/' + images.profileImg.name)
+            const snapshot = await uploadBytesResumable(storageRef, images.profileImg)
+            const imageLink = await getDownloadURL(snapshot.ref);
+            userData = { ...userData, profileImg: imageLink }
+        }
+        if (images.coverImg) {
+            console.log('Updating Cover image...')
+            const storageRef = ref(storage, 'images/' + images.coverImg.name)
+            const snapshot = await uploadBytesResumable(storageRef, images.coverImg)
+            const imageLink = await getDownloadURL(snapshot.ref);
+            setData(prev => ({ ...prev, coverImg: imageLink }));
+        }
+        dispatch(updateDataAction(_id, userData))
+        setData(null)
+        setSaving(false);
+        setImages(null)
     }
 
     const changeHandler = (e) => {
-        if (e.target.name === 'profileImg' || 'coverImg') {
+        if (e.target.name === 'profileImg' || e.target.name === 'coverImg') {
             if (e.target.files && e.target.files[0]) {
                 const tempImage = new File([e.target.files[0]], Date.now() + e.target.files[0].name)
-                setImages(prev => [...prev, tempImage])
-                setData((prev) => ({ ...prev, [e.target.name]: tempImage.name }))
+                setImages(prev => ({...prev, [e.target.name]: tempImage}))
             }
         } else {
-            setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+            setData(prev => ({ ...prev, [e.target.name]: e.target.value }));
         }
     }
 

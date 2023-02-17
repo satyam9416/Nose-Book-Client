@@ -7,6 +7,8 @@ import { logOut } from '../../actions/authAction'
 import API from '../../API/API'
 import EditModal from '../edit-details-modal/edit-details-modal'
 import './info-card.css'
+import moment from 'moment';
+
 
 const Infocard = () => {
     const dispatch = useDispatch()
@@ -37,7 +39,7 @@ const Infocard = () => {
                 <ul className='info-list'>
                     {userData?.phone && <li>Phone : {userData.phone}</li>}
                     {userData?.userName && <li>Email : {userData.userName}</li>}
-                    {userData?.DOB && <li>Date : {userData.DOB}</li>}
+                {userData?.DOB && <li>Date : {moment(userData.DOB).format('D/MM/YYYY')}</li>}
                     {userData?.relationshipStatus && <li>Relationship Status : {userData.relationshipStatus}</li>}
                     {userData?.worksAt && <li>Works At : {userData.worksAt}</li>}
                 </ul>

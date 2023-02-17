@@ -6,15 +6,7 @@ import { storage } from '../../firebase-config';
 
 const LazyImage = ({ image, id, className, onClick, altSrc, aspectRatio, loading = false }) => {
     const [imgLoaded, setImgLoaded] = useState(false);
-    const [src, setSrc] = useState(null);
-
-    useEffect(() => {
-        const getSrc = async () => {
-            const url = await getDownloadURL(ref(storage, 'images/' + image))
-            setSrc(url)
-        }
-        !loading && (image !== undefined ? getSrc() : setSrc(altSrc))
-    }, [image, altSrc, loading])
+    const [src, setSrc] = useState(image || altSrc);
 
     const paddingTop = useMemo(() => {
         if (typeof aspectRatio === 'object' && aspectRatio?.length === 2 && !aspectRatio.some((el) => typeof el !== 'number')) {
@@ -22,19 +14,19 @@ const LazyImage = ({ image, id, className, onClick, altSrc, aspectRatio, loading
         } else {
             return 133.33333
         }
-    }, [aspectRatio])
+    }, [aspectRatio])    
 
     return (
         <div className={'lazy-image-parent ' + className + (imgLoaded && src ? ' ' : ' animating')} id={id}>
             <div className='lazy-image-wrapper' onClick={onClick} style={{ paddingTop: paddingTop + '%' }}>
-                {src && <LazyLoadImage
+                {src ? <LazyLoadImage
                     className='lazy-image'
                     src={src}
                     alt=""
                     onLoad={() => setImgLoaded(true)}
                     height='100%'
                     width='100%'
-                />}
+                /> : null}
             </div>
         </div>
     )

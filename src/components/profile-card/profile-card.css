@@ -3,11 +3,10 @@
   width: 100%;
   border-radius: 1.2rem;
   border: 1.2rem;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 .profile-images {
   width: 100%;
@@ -17,6 +16,8 @@
 .cover-img {
   width: 100%;
   height: 100%;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
 }
 .profile-img {
   border-radius: 50%;

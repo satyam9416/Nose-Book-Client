@@ -5,6 +5,7 @@
   /* min-height: 64rem; */
   padding-bottom: 1rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
 }
 .post-content-box{
   display: flex;
@@ -17,6 +18,8 @@
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   width: 100%;
+  pointer-events: none;
+  user-select: none;
 }
 .rxn-btns{
   display: flex;
@@ -45,4 +48,40 @@
 }
 .more-comments-btn:hover{
   cursor: pointer;
+}
+.post-action-menu{
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 3;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; 
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+.post-action-menu > ul{
+  list-style: none;
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+}
+.post-action-menu > ul > li{
+  padding-block: .5rem;
+  padding-inline: 1rem;
+  border-radius: .5rem;
+  background-color: #999;
+  cursor: pointer;
+  word-break: keep-all;
+  min-width: 10rem;
+}
+.post-action-menu > ul > li.deletebtn{
+  cursor: pointer;
+  background: red;
+  color: white;
+  border-radius: .5rem;
 }
