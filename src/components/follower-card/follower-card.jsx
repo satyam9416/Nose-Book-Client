@@ -29,14 +29,14 @@ const FollowerCard = ({id}) => {
     return (
         <div className='follower-card'>
             <div className='follower-profile' onClick={() => navigate(`/profile/${userData?._id}`)}>
-                <LazyImage className='follower-card-profile-img' image={userData?.profileImg} aspectRatio={[1,1]} altSrc='/images/defaultProfile.jpg'/>
+                <LazyImage className='follower-card-profile-img' image={userData?.profileImg}/>
                 <div className='follower-name '>
                     <span style={{fontSize : '2.5rem' }}>{userData?.fName}</span>
-                    {/* <span>{userData?.userName}</span> */}
                 </div>
             </div>
             <button className='btn follow-btn' onClick={followHandler}>{isFollowing ? 'Unfollow' : 'Follow'}</button>
         </div>
     )
 };
+
 export default FollowerCard;

@@ -12,7 +12,6 @@ function EditModal(props) {
     const dispatch = useDispatch()
     const theme = useMantineTheme();
     const { _id } = useSelector((state) => state.authReducer.authData)
-    // const saving = useSelector((state) => state.updateDataReducer.loading)
     const [saving, setSaving] = useState(false)
     const [data, setData] = useState({ currentUserId: _id })
     const [images, setImages] = useState({})
@@ -22,14 +21,12 @@ function EditModal(props) {
         setSaving(true);
         let userData = data;
         if (images.profileImg) {
-            console.log('Updating profile image...')
             const storageRef = ref(storage, 'images/' + images.profileImg.name)
             const snapshot = await uploadBytesResumable(storageRef, images.profileImg)
             const imageLink = await getDownloadURL(snapshot.ref);
             userData = { ...userData, profileImg: imageLink }
         }
         if (images.coverImg) {
-            console.log('Updating Cover image...')
             const storageRef = ref(storage, 'images/' + images.coverImg.name)
             const snapshot = await uploadBytesResumable(storageRef, images.coverImg)
             const imageLink = await getDownloadURL(snapshot.ref);

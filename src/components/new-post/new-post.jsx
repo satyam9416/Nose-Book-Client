@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { BsFillCameraVideoFill } from 'react-icons/bs'
+// import { BsFillCameraVideoFill } from 'react-icons/bs'
 import { MdAddPhotoAlternate } from 'react-icons/md'
-import { MdAddLocationAlt } from 'react-icons/md'
-import { AiFillSchedule } from 'react-icons/ai'
+// import { MdAddLocationAlt } from 'react-icons/md'
+// import { AiFillSchedule } from 'react-icons/ai'
 import { IoIosSend } from 'react-icons/io'
 import { AiOutlineClose } from 'react-icons/ai'
 import './new-post.css'
@@ -36,18 +36,19 @@ const NewPost = () => {
 
         dispatch(shareAction(newpost, image))
         setImage(null)
+        content.current.value = '';
     }
 
     return (
         <div className='new-post'>
             <LazyImage image={authData.profileImg} className='new-post-profile-img' altSrc='/images/defaultProfile.jpg' onClick={() => { navigate('/profile/' + authData._id) }} aspectRatio={[1,1]}/>
             <div className='new-share'>
-                <input type="text" name="new-post" placeholder="What's happening ?" ref={content} />
+                <input type="text" name="new-post" placeholder="What's happening ?" ref={content} id='new-post-share-input'/>
                 <div className='share-options'>
-                    <button onClick={() => imgrefs.current.click()} className='btn photo-btn'><MdAddPhotoAlternate />Photo</button>
-                    <button className='btn video-btn'><BsFillCameraVideoFill />Video</button>
+                    <button onClick={() => imgrefs.current.click()} className='btn photo-btn'><MdAddPhotoAlternate />Insert Photo</button>
+                    {/* <button className='btn video-btn'><BsFillCameraVideoFill />Video</button>
                     <button className='btn location-btn'><MdAddLocationAlt /> Location</button>
-                    <button className='btn schedule-btn'><AiFillSchedule /> Schedule</button>
+                    <button className='btn schedule-btn'><AiFillSchedule /> Schedule</button> */}
                     <button className='btn post-btn' onClick={shareHandler} disabled={!image}><IoIosSend />{sharing ? 'Sharing...' : 'Share'}</button>
                 </div>
                 <input style={{ display: 'none' }} onChange={changeImageHandler} type="file" name="myImage" ref={imgrefs} accept="image/png, image/jpeg" />

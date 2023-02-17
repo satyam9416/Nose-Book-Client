@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LazyImage from '../lazy-image/lazy-image';
 import PostModal from '../post-modal/post-modal';
-import {deletePost} from '../../actions/deletePostAction';
+import { deletePost } from '../../actions/deletePostAction';
 
 const Post = ({ post }) => {
   const authData = useSelector((state) => state.authReducer.authData);
@@ -26,19 +26,24 @@ const Post = ({ post }) => {
 
   const handlePostMenuTrigger = () => { setIsPostMenuOpen(prev => !prev) };
 
-  const handleDeletePost = async() => {
+  const handleDeletePost = async () => {
     dispatch(deletePost(post._id));
   };
 
   return (
     <div className='post'>
-      <div className='post-action-menu'>
-        <AiOutlineMenu className='menu-trigger' onClick={handlePostMenuTrigger}/>
-        {isPostMenuOpen ? <ul className='post-menu-options'>
-          <li className='deletebtn' onClick={handleDeletePost}>Delete Post</li>
-        </ul>:null}
 
+      <div className='post-header-bar'>
+        <div className='post-header-user-data'></div>
+        
+        <div className='post-action-menu'>
+          <AiOutlineMenu className='menu-trigger' onClick={handlePostMenuTrigger} />
+          {isPostMenuOpen ? <ul className='post-menu-options'>
+            <li className='deletebtn' onClick={handleDeletePost}>Delete Post</li>
+          </ul> : null}
+        </div>
       </div>
+
       <LazyImage image={post?.image} className='post-img' />
       <div className='post-content-box'>
         <span className='post-content'>{post.content}</span>

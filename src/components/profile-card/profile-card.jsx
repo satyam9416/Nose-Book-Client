@@ -27,16 +27,15 @@ const ProfileCard = ({ location }) => {
         fetchUserPosts()
     }, [location, id, _id, newShare])
 
-    return userData._id ? <div className='profile-box'>
+    return <div className='profile-box'>
             <div className='profile-images'>
-                <LazyImage image={userData.coverImg || null} className='cover-img' altSrc='/images/defaultCover.jpg' onClick={() => { navigate('/profile/' + userData._id) }} aspectRatio={[1, 1]} loading={userData.fName === undefined} />
+                <LazyImage image={userData.coverImg || null} className='cover-img' aspectRatio={[1, 1]} loading={userData.fName === undefined} />
 
-               <LazyImage image={userData.profileImg || null} className='profile-img' altSrc='/images/defaultProfile.jpg' onClick={() => { navigate('/profile/' + userData._id) }} aspectRatio={[1, 1]} loading={userData.fName === undefined} />
+               <LazyImage image={userData.profileImg || null} className='profile-img' aspectRatio={[1, 1]} loading={userData.fName === undefined} />
             </div>
-            <div className='profile-name' onClick={() => navigate('/profile/' + userData._id)}>
-                <span><h1>{userData?.fName}</h1></span>
-                <span>{userData?.status || ''}</span>
-
+            <div className='profile-name'>
+            <span onClick={() => navigate('/profile/' + userData._id)}><h1>{userData?.fName}</h1></span>
+                <span>{userData?.status}</span>
             </div>
             <div className='hr' style={{ width: "90%" }} />
             <div className='follow-status'>
@@ -60,6 +59,5 @@ const ProfileCard = ({ location }) => {
                 }
             </div>
             <div className='hr' style={{ width: "90%" }} />
-        </div> : null
-};
+        </div> };
 export default ProfileCard;

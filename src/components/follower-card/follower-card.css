@@ -18,6 +18,7 @@
 .follower-card-profile-img {
   width: 5rem;
   border-radius: 50%;
+  aspect-ratio: 1/1;
 }
 .follower-name {
   display: flex;
@@ -36,11 +37,13 @@
   font-size: 1.6rem;
 }
 .follow-btn {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   background-color: orange;
-  letter-spacing: 0.2rem;
-  padding: 0 0.5rem;
-  /* width: 7rem; */
-  height: 3rem;
+  letter-spacing: .1em;
+  padding: .5em 1em;
   border-radius: 0.6rem;
+}
+.follow-btn:active{
+  filter: opacity(.7);
 }

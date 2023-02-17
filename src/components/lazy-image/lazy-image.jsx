@@ -1,29 +1,24 @@
 import './lazy-image.css'
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-const LazyImage = ({ image, id, className, onClick, altSrc, aspectRatio, loading = false }) => {
+const LazyImage = ({ image, id, className, onClick, altSrc }) => {
     const [imgLoaded, setImgLoaded] = useState(false);
 
-    const paddingTop = useMemo(() => {
-        if (typeof aspectRatio === 'object' && aspectRatio?.length === 2 && !aspectRatio.some((el) => typeof el !== 'number')) {
-            return ((aspectRatio[1]) / (aspectRatio[0])) * 100;
-        } else {
-            return 133.33333
-        }
-    }, [aspectRatio])    
-
     return (
-        <div className={'lazy-image-parent ' + className + (imgLoaded && (image || altSrc) ? ' ' : ' animating')} id={id}>
-            <div className='lazy-image-wrapper' onClick={onClick} style={{ paddingTop: paddingTop + '%' }}>
-                {(image || altSrc) ? <LazyLoadImage
+        <div className={'lazy-image-parent ' + className + (imgLoaded && image ? ' ' : ' animating')} id={id} onClick={onClick}>
+
+            <div className='lazy-image-wrapper' style={{ opacity: imgLoaded ? '1' : '0'}}>
+
+                {<LazyLoadImage
                     className='lazy-image'
-                    src={image || altSrc}
+                    src={image}
                     alt=""
                     onLoad={() => setImgLoaded(true)}
                     height='100%'
                     width='100%'
-                /> : null}
+                />}
+
             </div>
         </div>
     )
