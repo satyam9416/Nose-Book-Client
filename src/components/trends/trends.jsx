@@ -2,21 +2,10 @@ import React from 'react'
 import './trends.css'
 
 const Trends = () => {
-  const trends = [
-    '#tempTrend',
-    '#tempTrend',
-    '#tempTrend',
-    '#tempTrend',
-    '#tempTrend'
-  ]
-
   
   return (
     <div className='trends-box'>
         <h3>Suggestions for You</h3>
-
-
-
     </div>
   )
 }
