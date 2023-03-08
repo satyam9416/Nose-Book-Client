@@ -30,11 +30,11 @@
   display: flex;
   gap: 1rem;
 }
-.rxn-btns > svg{
+.rxn-btns svg{
   font-size: 3rem;
-  transition: all .3s;
+  transition: scale .3s;
 }
-.rxn-btns > svg:active{
+.rxn-btns span:active svg:first-child, .rxn-btns > svg:active{
   scale: 1.2;
 }
 .post-content{

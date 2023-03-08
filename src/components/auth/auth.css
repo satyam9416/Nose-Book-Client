@@ -1,7 +1,5 @@
 .auth {
-  /* height: 100vh; */
-  width: 100vw;
-  margin-top: 20rem;
+  height: 100dvh;
 }
 .auth {
   display: flex;

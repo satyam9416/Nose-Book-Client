@@ -5,7 +5,7 @@ import Rightside from '../components/rightside/rightside'
 import Postside from '../components/postside/postside'
 
 const Home = () => (
-    <div className='app'>
+    <div className='home-layout'>
         <Leftside location='homepage' />
         <Postside location='homepage' />
         <Rightside />

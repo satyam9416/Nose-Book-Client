@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import Post from '../post/post'
 import { useParams } from 'react-router-dom'
 import API from '../../API/API'
+import Loading from '../../pages/loading'
 
 const PostsBox = ({ location }) => {
   const { id } = useParams()
@@ -32,7 +33,7 @@ const PostsBox = ({ location }) => {
   }, [newShare, _id, id, location, postDeleted])
 
   return (
-    loading ? <h1>Loading...</h1> : !posts?.length ? <h1 color='black'>No posts</h1> :
+    loading ? <Loading /> : !posts?.length ? <h1 color='black'>No posts</h1> :
       <div className='posts-box'>
         {posts.map((post) => <Post post={post} key={post._id} />)}
       </div>

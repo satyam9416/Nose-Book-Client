@@ -15,6 +15,10 @@
   --video: #4a4eb7;
   --location: #ef5757;
   --shedule: #e1ae4a;
+
+  --mobile-width: 478px;
+  --tablet-width: 991px;
+  --landscape-width: 767px;
 }
 * {
   margin: 0;
@@ -50,13 +54,23 @@ a:focus {
 .app {
   display: grid;
   padding: 10px;
-  background-color: rgb(228, 247, 239);
   width: 100vw;
-  grid-template-columns: 26% auto 26%;
+  grid-template-columns: 1fr 2fr 1fr;
   gap: 1rem;
   overflow: hidden;
   height: 100vh;
 }
+
+.home-layout{
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: rgb(228, 247, 239);
+  position: relative;
+  padding: 1rem;
+  height: 100dvh;
+}
+
 .left-side,
 .postside,
 .right-side {
@@ -67,7 +81,6 @@ a:focus {
   flex-direction: column;
   padding-top: 1.5rem;
   gap: 1.2rem;
-  height: 98vh;
   overflow: scroll;
 }
 input:-internal-autofill-previewed {
@@ -75,8 +88,46 @@ input:-internal-autofill-previewed {
 }
 
 /* M E D I A  Q U E R Y */
-@media (max-width: 700px) {
+
+
+
+/* FOR TABLETS */
+@media (max-width: 991px) {
+  
+  .home-layout, .app{
+    grid-template-columns: 1fr 2fr;
+  }
+  .right-side{
+    display: none;
+  }
+  
+}
+
+/* FOR MOBILE LANDSCAPE */
+@media (max-width: 767px) {
+  
+  .home-layout, .app{
+    grid-template-columns: 1fr;
+  }
+  .left-side{
+    display: none;
+  }
+  
+}
+
+
+
+/* FOR MOBILES */
+@media (max-width: 478px) {
   html {
     font-size: 45%;
   }
+  .home-layout, .app{
+    grid-template-columns: 100%;
+  }
+  
+  .app{
+    padding-bottom: 5rem;
+  }
+
 }

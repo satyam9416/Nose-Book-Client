@@ -2,7 +2,7 @@ export const authReducer = (state = { authData: null, loading: false, error: nul
     switch (action.type) {
         case 'AUTH_START':
             return { ...state, loading : true}
-        case 'AUTH_SUCCESS':
+        case 'AUTH_SUCCESS':            
             return { ...state, loading: false, authData: action?.data }
         case 'AUTH_FAIL':
             return { ...state, error: action.error, loading: false }

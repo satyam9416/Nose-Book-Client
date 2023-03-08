@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  /* overflow-y: scroll; */
 }
 .profile-images{
     height: 25rem;
@@ -18,5 +17,5 @@
     margin-top: 8.5rem;
 }
 .new-share{
-    overflow: scroll;
+    overflow-y: scroll;
 }

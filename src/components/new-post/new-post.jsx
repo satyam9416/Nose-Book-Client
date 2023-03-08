@@ -43,7 +43,7 @@ const NewPost = () => {
         <div className='new-post'>
             <LazyImage image={authData.profileImg} className='new-post-profile-img' altSrc='/images/defaultProfile.jpg' onClick={() => { navigate('/profile/' + authData._id) }} aspectRatio={[1,1]}/>
             <div className='new-share'>
-                <input type="text" name="new-post" placeholder="What's happening ?" ref={content} id='new-post-share-input'/>
+                <input type="text" name="new-post" placeholder="What's happening ?" ref={content} id='new-post-share-input' autoComplete='off'/>
                 <div className='share-options'>
                     <button onClick={() => imgrefs.current.click()} className='btn photo-btn'><MdAddPhotoAlternate />Insert Photo</button>
                     {/* <button className='btn video-btn'><BsFillCameraVideoFill />Video</button>

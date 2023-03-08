@@ -7,6 +7,7 @@ import '../auth.css'
 const Login = () => {
     const dispatch = useDispatch()
     const loading = useSelector((state) => state.authReducer.loading)
+    const authError = useSelector((state) => state.authReducer.error)
     const authData = useSelector((state) => state.authReducer.authData)
     
     const [userData, setUserData] = useState({ "userName": "", "passwd": "" })
@@ -37,6 +38,7 @@ const Login = () => {
             <h1>NoseBook</h1>
             <form onSubmit={submitHandler} className='login-form'>
                 <h1>Login</h1>
+                <p style={{color:'red'}}>{authError?.response?.statusText}</p>
                 <input type="text" placeholder='User Name' name='username' onChange={changehandler} value={userData.userName} required autoFocus />
                 <input type="password" placeholder='Password' name='passwd' onChange={changehandler} value={userData.passwd} required />
                 <div>

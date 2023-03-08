@@ -10,7 +10,7 @@ export const SocketState = ({ children }) => {
   const socket = useRef()
 
   useEffect(() => {
-    const url = process.env.REACT_APP_PRODUCTION ? process.env.REACT_APP_SERVER_URL : "http://localhost:5000/"
+    const url = import.meta.env.VITE_SERVER_URL
     socket.current = io(url, { transports: ['websocket'] })
     socket.current.emit('addUser', _id)
   }, [_id])

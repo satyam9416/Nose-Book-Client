@@ -35,7 +35,7 @@ const Post = ({ post }) => {
 
       <div className='post-header-bar'>
         <div className='post-header-user-data'></div>
-        
+
         <div className='post-action-menu'>
           <AiOutlineMenu className='menu-trigger' onClick={handlePostMenuTrigger} />
           {isPostMenuOpen ? <ul className='post-menu-options'>
@@ -48,7 +48,9 @@ const Post = ({ post }) => {
       <div className='post-content-box'>
         <span className='post-content'>{post.content}</span>
         <div className='rxn-btns' >
-          {liked ? <AiFillHeart className='btn' fill='red' onClick={() => likePost(post._id)} /> : <AiOutlineHeart className='btn' onClick={() => likePost(post._id)} />}
+          <span onClick={() => likePost(post._id)} >
+            {liked ? <AiFillHeart className='btn' fill='red' /> : <AiOutlineHeart className='btn' />}
+          </span>
           <FaRegComment className='btn' onClick={() => { setIsOpenPostModal(true) }} />
           <RiSendPlaneLine className='btn' />
         </div>

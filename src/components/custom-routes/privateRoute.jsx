@@ -4,6 +4,7 @@ import { authenticate } from "../../actions/authAction"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { SocketState } from "../../context/socket"
+import Loading from "../../pages/loading"
 
 const PrivateRoute = () => {
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ const PrivateRoute = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-        loading || !loaded ? <h1>Loading...</h1> : authData ? <SocketState><Outlet /></SocketState> : <Navigate to='login' />)
+        loading || !loaded ? <Loading page/> : authData ? <SocketState><Outlet /></SocketState> : <Navigate to='login' />)
 }
 
 export default PrivateRoute
