@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './post.css';
 import { FaRegComment } from 'react-icons/fa';
 import { RiSendPlaneLine } from 'react-icons/ri';
@@ -14,9 +14,10 @@ const Post = ({ post }) => {
   const authData = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(post.likes.includes(authData._id));
   const [likes, setLikes] = useState(post.likes.length);
-  const [isPostMenuOpen, setIsPostMenuOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [isOpenPostModal, setIsOpenPostModal] = useState(false);
   const dispatch = useDispatch();
+  const postDescRef = useRef()
 
   const likePost = async (id) => {
     setLiked((prev) => !prev);
@@ -24,9 +25,12 @@ const Post = ({ post }) => {
     await API.put(`post/like/${id}`, { userId: authData._id });
   }
 
-  const handlePostMenuTrigger = () => { setIsPostMenuOpen(prev => !prev) };
+  const editPost = () => {
+    postDescRef.target.isEditable = true
+  }
 
   const handleDeletePost = async () => {
+    setIsDeleting(true)
     dispatch(deletePost(post._id));
   };
 
@@ -36,17 +40,23 @@ const Post = ({ post }) => {
       <div className='post-header-bar'>
         <div className='post-header-user-data'></div>
 
-        <div className='post-action-menu'>
-          <AiOutlineMenu className='menu-trigger' onClick={handlePostMenuTrigger} />
-          {isPostMenuOpen ? <ul className='post-menu-options'>
-            <li className='deletebtn' onClick={handleDeletePost}>Delete Post</li>
-          </ul> : null}
+        <div className='post-action-menu' tabIndex={1}>
+        
+          <span tabIndex={1} className='menu-trigger'>
+            <AiOutlineMenu />
+          </span>
+
+          <ul className='post-menu-options'>
+            <li className='Editbtn'>Edit</li>
+            <li className='deletebtn' onClick={handleDeletePost}>{isDeleting ? 'Deleting...' : 'Delete Post'}</li>
+          </ul>
         </div>
       </div>
 
       <LazyImage image={post?.image} className='post-img' />
+
       <div className='post-content-box'>
-        <span className='post-content'>{post.content}</span>
+        <span className='post-content' ref={postDescRef}>{post.content}</span>
         <div className='rxn-btns' >
           <span onClick={() => likePost(post._id)} >
             {liked ? <AiFillHeart className='btn' fill='red' /> : <AiOutlineHeart className='btn' />}

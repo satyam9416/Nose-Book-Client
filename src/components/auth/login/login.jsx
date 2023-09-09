@@ -38,7 +38,7 @@ const Login = () => {
             <h1>NoseBook</h1>
             <form onSubmit={submitHandler} className='login-form'>
                 <h1>Login</h1>
-                <p style={{color:'red'}}>{authError?.response?.statusText}</p>
+                <p style={{color:'red'}}>{authError?.response?.data?.message}</p>
                 <input type="text" placeholder='User Name' name='username' onChange={changehandler} value={userData.userName} required autoFocus />
                 <input type="password" placeholder='Password' name='passwd' onChange={changehandler} value={userData.passwd} required />
                 <div>

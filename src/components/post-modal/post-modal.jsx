@@ -5,10 +5,14 @@ import API from '../../API/API'
 import LazyImage from '../lazy-image/lazy-image'
 import { useNavigate } from 'react-router-dom'
 
-const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
+const PostModal = ({ isOpenPostModal, post:prevpost, setIsOpenPostModal }) => {
+    const [post, setPost] = useState(prevpost)
     const [loading, setLoading] = useState(true)
     const [userData, setUserData] = useState(null);
+    const [comment, setComment] = useState('');
+    const [IsCommenting, setIsCommenting] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         const getUserData = async () => {
             const { data } = await API.get(`user/${post.userId}`)
@@ -18,10 +22,17 @@ const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
         getUserData()
     }, [post])
 
-    const handleNewComment = e => {
-        // e.preventDefault();
-        // const text = document.getElementById('new-comment-input');
-        // document.getElementById('new-comment-input').value = '';
+    const handleNewComment = async e => {
+        e.preventDefault();
+        try {
+            setIsCommenting(true)
+            const {data} = await API.put(`post/comment/`+post._id, { comment })
+            setComment('')
+            setPost(data?.post)
+            setIsCommenting(false)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -39,12 +50,14 @@ const PostModal = ({ isOpenPostModal, post, setIsOpenPostModal }) => {
                             <span>{userData?.userName}</span>
                         </div>
                     </div>
-                    <div className='post-modal-comment-section'>
-
-                    </div>
+                    <ul className='post-modal-comment-section'>
+                        {post.comments.map((comment, i) => {
+                            return <li key={comment.text+i}>{comment.text}</li>
+                        })}
+                    </ul>
                     <form className='comment-input-wrapper' onSubmit={handleNewComment}>
-                        <input type="text" name="newCommentText" placeholder='Add a comment...' id='new-comment-input'/>
-                        <button type='submit'>post</button>
+                        <input type="text" placeholder='Add a comment...' value={comment} onChange={e=>setComment(e.target.value)}/>
+                        <button type='submit' disabled={comment === '' || IsCommenting}>{IsCommenting ? 'posting...' : 'post'}</button>
                     </form>
                 </div>
             </div>

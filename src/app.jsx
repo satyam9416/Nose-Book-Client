@@ -9,8 +9,6 @@ const Chat = lazy(() => import('./pages/Chat'));
 const Signup = lazy(() => import('./components/auth/signup/signup'));
 const Login = lazy(() => import('./components/auth/login/login'));
 
-
-
 const App = () => {
 
   return (

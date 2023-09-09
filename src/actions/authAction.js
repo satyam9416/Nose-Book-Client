@@ -38,7 +38,7 @@ export const logOut = () => async (dispatch) => {
 export const authenticate = () => async (dispatch) => {
     dispatch({ type: 'AUTH_START' })
     try {
-        let {data} = await API.get('auth/authenticate')
+        let { data } = await API.get('auth/authenticate')
         dispatch({ type: 'AUTH_SUCCESS', data: data })
     } catch (error) {
         // console.log(error)

@@ -11,11 +11,13 @@ const PrivateRoute = () => {
     const authData = useSelector((state) => state.authReducer.authData)
     const loading = useSelector((state) => state.authReducer.loading)
     const [loaded, setloaded] = useState(false)
+
     useEffect(() => {
-        !authData && dispatch(authenticate())
-        setloaded(prev => true)
+        dispatch(authenticate())
+        setloaded(true)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    
     return (
         loading || !loaded ? <Loading page/> : authData ? <SocketState><Outlet /></SocketState> : <Navigate to='login' />)
 }

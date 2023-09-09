@@ -8,13 +8,6 @@ const ChatListItem = ({ friendId, onClick}) => {
     const [userData, setUserData] = useState(null)
     const chatListProfileImgRef = useRef()
 
-    useEffect(() => {
-        const getImageUrl = async () => {
-            chatListProfileImgRef.current.src = await getDownloadURL(ref(storage, 'images/' + (userData?.profileImg ? userData.profileImg : 'defaultProfile.jpg')))
-        }
-        userData && getImageUrl()
-    }, [userData])
-
     useEffect(()=> {
         const setUser = async() => {
             const user = await getUser(friendId)
@@ -25,7 +18,7 @@ const ChatListItem = ({ friendId, onClick}) => {
 
     return (userData &&
       <div className='chat-list-item' onClick={onClick}>
-            <img src='' alt="" ref={chatListProfileImgRef}/>
+            <img src={userData.profileImg} alt="" ref={chatListProfileImgRef} />
           <p>{userData.fName + ' ' + userData.lName}</p>
       </div>
   )
